@@ -1,4 +1,18 @@
-<script src="/layuimini-2/admin/location.js"></script>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/layuimini-2/lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="/layuimini-2/css/public.css" media="all">
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+    </style>
 <style>
     .layui-form-item .layui-input-company {
         width: auto;
@@ -6,6 +20,8 @@
         line-height: 38px;
     }
 </style>
+</head>
+<body>
 <div class="layuimini-container layuimini-page-anim">
     <div class="layuimini-main">
 
@@ -39,12 +55,12 @@
         </div>
     </div>
 </div>
-
+<script src="/layuimini-2/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 <script>
-    layui.use(['form', 'miniPage'], function () {
+    layui.use(['form'], function () {
         var form = layui.form,
             layer = layui.layer,
-            miniPage = layui.miniPage;
+            $ = layui.$;
 
         /**
          * 初始化表单，要加上，不然刷新部分组件可能会不加载
@@ -53,14 +69,40 @@
 
         //监听提交
         form.on('submit(saveBtn)', function (data) {
-            var index = layer.alert(JSON.stringify(data.field), {
+            /*var index = layer.alert(JSON.stringify(data.field), {
                 title: '最终的提交信息'
             }, function () {
                 layer.close(index);
                 miniPage.hashHome();
-            });
+            });*/
+            var str=JSON.stringify(data.field);
+            var domain =window.location.protocol+"//"+document.domain;
+            domain=domain+"/admin/modify_admin_password?_token={{csrf_token()}}";
+            $.ajax({
+                type:'POST',
+                url:domain,
+                data:str,
+                success:function (res){
+                    if (res==="ok"){
+                       layer.open({
+                           content:"密码修改成功请重新登录",
+                           btn:["确定"],
+                           yes:function (){
+                               window.parent.location="/";
+                           }
+                       })
+                    }else{
+                        layer.msg(res);
+                    }
+                },
+                error:function (msg){
+
+                }
+            })
             return false;
         });
 
     });
 </script>
+</body>
+</html>

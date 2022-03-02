@@ -1,4 +1,3 @@
-<script src="/layuimini-2/admin/location.js"></script>
 <div class="layuimini-container layuimini-page-anim">
     <div class="layuimini-main">
         <blockquote class="layui-elem-quote">
@@ -75,13 +74,15 @@
             }],
             cols: [[
                 {field: 'id',title: 'ID', sort: true},
-                {field: 'username',title: '管理员'},
+                {field: 'username',title: '用户名'},
                 {field: 'phone',title: '手机号'},
-                {field:"level",title:"级别",templet:function (d){
+                {field:"level",title:"角色",templet:function (d){
                         if (d.level==1){
                             return "超级管理员";
                         }else if (d.level==2){
                             return "普通管理员";
+                        }else{
+                            return "会员";
                         }
                     }},
                 {field: 'create_time',title: '创建时间'},

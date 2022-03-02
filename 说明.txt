@@ -1,0 +1,6 @@
+1 执行composer install
+
+2 在laravel下找到 .env.example，将其复制一份重命名为 ".env"
+使用CMD命令 copy .env.example .env
+
+3 在laravel下执行命令：php artisan key:generate 
