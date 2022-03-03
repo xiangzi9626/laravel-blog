@@ -66,8 +66,8 @@
         //监听提交
         form.on('submit(saveBtn)', function (data) {
             var str=JSON.stringify(data.field);
-           var domain = document.domain;
-            domain="http://"+domain+"/admin/edit_admin/{{$_GET["id"]}}?_token={{csrf_token()}}";
+           var domain = window.location.protocol+"//"+document.domain;
+            domain=domain+"/admin/edit_admin/{{$_GET["id"]}}?_token={{csrf_token()}}";
           $.ajax({
               type:'POST',
               url:domain,

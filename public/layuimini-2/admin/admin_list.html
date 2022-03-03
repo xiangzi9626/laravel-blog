@@ -68,7 +68,7 @@
             elem: '#currentTableId',
             url: '/admin/admin_list',
             toolbar: '#toolbarDemo',
-            defaultToolbar: ['', '', '', {
+            defaultToolbar: ['filter', 'exports', 'print', {
                 title: '提示',
                 layEvent: 'LAYTABLE_TIPS',
                 icon: 'layui-icon-tips'
@@ -162,8 +162,8 @@
                     icon:2,
                     btn:["确定","取消"],
                     btn1:function (){
-                        var domain=document.domain;
-                        domain="http://"+domain+"/admin/delete_admin/"+data.id;
+                        var domain=window.location.protocol+"//"+document.domain;
+                        domain=domain+"/admin/delete_admin/"+data.id;
                         $.ajax({
                             type:"POST",
                             url:domain,

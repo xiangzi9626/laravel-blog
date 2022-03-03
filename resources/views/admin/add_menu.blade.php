@@ -71,8 +71,8 @@
         //监听提交
         form.on('submit(saveBtn)', function (data) {
             var str=JSON.stringify(data.field);
-           var domain = document.domain;
-            domain="http://"+domain+"/admin/add_menu?_token={{csrf_token()}}";
+           var domain = window.location.protocol+"//"+document.domain;
+            domain=domain+"/admin/add_menu?_token={{csrf_token()}}";
           $.ajax({
               type:'POST',
               url:domain,

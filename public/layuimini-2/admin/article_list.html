@@ -69,8 +69,8 @@
             }
             var str={id:data.value,status:b};
             str=JSON.stringify(str);
-             var domain = document.domain;
-            domain="http://"+domain+"/admin/article_switch";
+             var domain = window.location.protocol+"//"+document.domain;
+            domain=domain+"/admin/article_switch";
             $.ajax({
                 type:'POST',
                 url:domain,
@@ -193,8 +193,8 @@
                     btn1:function (){
                         var str={id:data.id};
                         str=JSON.stringify(str);
-                        var domain=document.domain;
-                        domain="http://"+domain+"/admin/delete_article";
+                        var domain=window.location.protocol+"//"+document.domain;
+                        domain=domain+"/admin/delete_article";
                         $.ajax({
                             type:"POST",
                             data:str,

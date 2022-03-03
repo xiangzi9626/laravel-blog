@@ -17,37 +17,11 @@
 <body>
 <div class="layui-form layuimini-form">
     <div class="layui-form-item">
-        <label class="layui-form-label required">管理员账号</label>
+        <label class="layui-form-label required">聊天室名称</label>
         <div class="layui-input-block">
-            <input type="text" name="username" lay-verify="required" lay-reqtext="管理员账号不能为空" placeholder="请输入管理员账号" value="" class="layui-input">
+            <input type="text" name="name" lay-verify="required" lay-reqtext="聊天室名称不能为空" placeholder="请输入" value="" class="layui-input">
          </div>
     </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label required">密码</label>
-        <div class="layui-input-block">
-            <input type="password" name="password" lay-verify="required" lay-reqtext="密码不能为空" placeholder="请输入密码" value="" class="layui-input">
-         </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label required">重复密码</label>
-        <div class="layui-input-block">
-            <input type="password" name="password2" placeholder="再次输入密码" value="" lay-verify="required" lay-reqtext="重复密码不能为空" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label required">手机号</label>
-        <div class="layui-input-block">
-            <input type="number" name="phone" value="" lay-verify="required" lay-reqtext="手机号不能为空" placeholder="请输入手机号" class="layui-input">
-         </div>
-    </div>
-
-    <div class="layui-form-item">
-        <label class="layui-form-label required">级别</label>
-        <div class="layui-input-block">
-            <input type="radio" name="level" value="2" checked="" title="普通管理员">
-        </div>
-    </div>
-
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认保存</button>
@@ -60,11 +34,12 @@
         var form = layui.form,
             layer = layui.layer,
             $ = layui.$;
+
         //监听提交
         form.on('submit(saveBtn)', function (data) {
             var str=JSON.stringify(data.field);
-           var domain =window.location.protocol+"//"+document.domain;
-            domain=domain+"/admin/add_admin?_token={{csrf_token()}}";
+           var domain = window.location.protocol+"//"+document.domain;
+            domain=domain+"/admin/add_chat_room?_token={{csrf_token()}}";
           $.ajax({
               type:'POST',
               url:domain,

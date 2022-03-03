@@ -96,8 +96,8 @@
             }
             var str={cid:cid,title:title,content:content};
              str=JSON.stringify(str);
-           var domain = document.domain;
-            domain="http://"+domain+"/admin/add_article?_token={{csrf_token()}}";
+           var domain = window.location.protocol+"//"+document.domain;
+            domain=domain+"/admin/add_article?_token={{csrf_token()}}";
           $.ajax({
               type:'POST',
               url:domain,

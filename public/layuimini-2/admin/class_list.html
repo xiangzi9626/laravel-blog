@@ -87,8 +87,8 @@
                     btn1:function (){
                         var str={id:data.id};
                         str=JSON.stringify(str);
-                        var domain = document.domain;
-                        domain="http://"+domain+"/admin/delete_class";
+                        var domain = window.location.protocol+"//"+document.domain;
+                        domain=domain+"/admin/delete_class";
                          $.ajax({
                             type:'POST',
                             url:domain,

@@ -61,14 +61,13 @@
                     <a href="javascript:;" data-check-screen="full"><i class="fa fa-arrows-alt"></i></a>
                 </li>
                 <li class="layui-nav-item layuimini-setting">
-                    <a href="javascript:;">admin</a>
+                    <a href="javascript:;">{{session("user")->username}}</a>
                     <dl class="layui-nav-child">
-                        <!-- <dd>
-                             <a href="javascript:;" layuimini-content-href="page/user-setting.html" data-title="基本资料" data-icon="fa fa-gears">基本资料<span class="layui-badge-dot"></span></a>
-                         </dd>-->
+                       <!-- <dd>
+                            <a href="javascript:;" layuimini-content-href="page/user-setting.html" data-title="基本资料" data-icon="fa fa-gears">基本资料<span class="layui-badge-dot"></span></a>
+                        </dd>-->
                         <dd>
-                            <a onclick="modify_admin_password()" href="javascript:void(0)" data-title="修改密码"
-                               data-icon="fa fa-gears">修改密码</a>
+                            <a onclick="modify_password()" href="javascript:void(0)" data-title="修改密码" data-icon="fa fa-gears">修改密码</a>
                         </dd>
                         <dd>
                             <hr>
@@ -138,25 +137,25 @@
         miniAdmin.render(options);
 
         // 百度统计代码，只统计指定域名
-        /* miniTongji.render({
-             specific: true,
-             domains: [
-                 '99php.cn',
-                 'layuimini.99php.cn',
-                 'layuimini-onepage.99php.cn',
-             ],
-         });*/
+       /* miniTongji.render({
+            specific: true,
+            domains: [
+                '99php.cn',
+                'layuimini.99php.cn',
+                'layuimini-onepage.99php.cn',
+            ],
+        });*/
 
         $('.login-out').on("click", function () {
-            layer.confirm("确定退出登录吗?", function () {
-                var domain = document.domain;
-                domain = "http://" + domain + "/admin/logout?_token={{csrf_token()}}";
+            layer.confirm("确定退出登录吗?",function (){
+                var domain=window.location.protocol+"//"+document.domain;
+                domain=domain+"/admin/logout?_token={{csrf_token()}}";
                 $.ajax({
-                    type: "POST",
-                    url: domain,
-                    success: function (res) {
+                    type:"POST",
+                    url:domain,
+                    success:function (res){
                         layer.msg("退出成功");
-                        window.location = "/";
+                        window.location="/";
                     }
                 })
             })
@@ -164,12 +163,12 @@
     });
 </script>
 <script>
-    function modify_admin_password() {
+    function modify_password(){
         layer.open({
-            title: "修改密码",
-            type: 2,
-            area: ["90%", "90%"],
-            content: "/admin/modify_admin_password_show"
+            title:"修改密码",
+            type:2,
+            area:["90%","90%"],
+            content:"/admin/modify_admin_password_show"
         })
     }
 </script>

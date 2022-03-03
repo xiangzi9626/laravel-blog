@@ -76,7 +76,7 @@
                 {field: 'id',title: 'ID', sort: true},
                 {field: 'username',title: '用户名'},
                 {field: 'phone',title: '手机号'},
-                {field:"level",title:"角色",templet:function (d){
+                {field:"level",title:"级别",templet:function (d){
                         if (d.level==1){
                             return "超级管理员";
                         }else if (d.level==2){
@@ -163,8 +163,8 @@
                     icon:2,
                     btn:["确定","取消"],
                     btn1:function (){
-                        var domain=document.domain;
-                        domain="http://"+domain+"/admin/delete_admin/"+data.id;
+                        var domain=window.location.protocol+"//"+document.domain;
+                        domain=domain+"/admin/delete_admin/"+data.id;
                         $.ajax({
                             type:"POST",
                             url:domain,

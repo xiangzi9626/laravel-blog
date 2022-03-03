@@ -67,8 +67,8 @@
                     }
                     var str={username:data.username,password:data.password,captcha:data.captcha};
                     str=JSON.stringify(str);
-                    var domain=document.domain;
-                    domain="http://"+domain+"/admin/login?_token={{csrf_token()}}";
+                    var domain=window.location.protocol+"//"+document.domain;
+                    domain=domain+"/admin/login?_token={{csrf_token()}}";
                     $.ajax({
                         type:"POST",
                         url:domain,
